@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">AZY-Bank</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,10 +42,20 @@
           </div>
         </li>
       </ul>
-      <form class="d-flex">
-         
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
-      </form>
+     <%
+        String username = (String)session.getAttribute("username");
+     if(username == null){
+     	%>
+     	<a class="btn btn-danger my-2 my-sm-0" href="${pageContext.request.contextPath }/login">Login</a>
+
+     <% 	 
+     }else{
+     	%>
+     	<span style="font-family: monospace; color: white; font-weight: bold; font-size:x-large; ">Welcome <%=username %></span> 
+     	&nbsp;&nbsp;&nbsp; <a class="btn btn-warning my-2 my-sm-0" href="${pageContext.request.contextPath }/logout">Logout</a>
+     	<%
+     }
+    %>  
     </div>
   </div>
   </nav>
