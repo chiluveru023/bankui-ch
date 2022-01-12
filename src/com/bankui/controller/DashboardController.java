@@ -33,6 +33,7 @@ public class DashboardController {
 
 	@RequestMapping("/statement")
 	public String showStatementScreen(Model model) {
+		model.addAttribute("msg", "");
 		return path+"statement";
 	}
 
