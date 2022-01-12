@@ -1,12 +1,18 @@
 package com.bankui.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.bankui.beans.Transfer;
+
 import org.springframework.ui.Model;
 
 @Controller
 public class DashboardController {
 	String path="dashboard/"; 
+	@Autowired
+	private Transfer transfer;
 
 	@RequestMapping("/dashboard")
 	public String showDashboard(Model model) {
@@ -15,6 +21,8 @@ public class DashboardController {
 
 	@RequestMapping("/transfer")
 	public String showTransferScreen(Model model) {
+		model.addAttribute("transfer", transfer);
+		model.addAttribute("msg", "");
 		return path+"transfer";
 	}
 

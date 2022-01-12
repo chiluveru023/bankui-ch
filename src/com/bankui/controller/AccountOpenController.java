@@ -14,6 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import com.bankui.beans.Customer;
+
 @Controller
 public class AccountOpenController {
 	@Autowired
@@ -21,6 +22,8 @@ public class AccountOpenController {
 	
 	@Autowired
 	private UserInfo user;
+	
+	
 	
 @RequestMapping("/")
 	public String showAccountOpenScreen(Model model) {
@@ -57,6 +60,7 @@ public String processLogin(@ModelAttribute UserInfo user, Model model,HttpSessio
 		ResponseEntity<UserInfo> entity = restTemplate.exchange(url, HttpMethod.GET, request, UserInfo.class);
 		UserInfo u = entity.getBody();
 		session.setAttribute("username", u.getUsername()); //JSESSIONID
+		session.setAttribute("password", user.getPassword());
 		model.addAttribute("user", u);
 		return "dashboard";
 	}
@@ -67,6 +71,8 @@ public String processLogin(@ModelAttribute UserInfo user, Model model,HttpSessio
 	}
 
 }
+
+
 @RequestMapping("/login")
 public String showLogin(Model model) {
 	model.addAttribute("user", user);
